@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://drw3m2xew040n"]
+
+[ext_resource type="Texture2D" uid="uid://dgwf6an0y7l05" path="res://assets/Sprites/Portals/Green_Portal.png" id="1_ub0ud"]
+[ext_resource type="Script" path="res://scripts/green_portal.gd" id="1_xup1b"]
+[ext_resource type="Texture2D" uid="uid://cyw6xv2ilouu" path="res://assets/Sprites/Portals/Gray_Portal.png" id="2_wp2ja"]
+[ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="4_e4gn6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jx1qn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ub0ud")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wp2ja")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a67xp"]
+radius = 5.0
+height = 48.0
+
+[node name="Green_Portal" type="Node2D"]
+script = ExtResource("1_xup1b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jx1qn")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_a67xp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e4gn6")
+volume_db = 5.0
+pitch_scale = 8.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="tree_exited" from="Area2D" to="." method="_on_area_2d_tree_exited"]

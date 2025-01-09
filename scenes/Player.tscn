@@ -1,0 +1,203 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfkh1qabee33o"]
+
+[ext_resource type="Texture2D" uid="uid://c8irmu1kb6utp" path="res://assets/Sprites/Player/Flamme.png" id="1_yp2mk"]
+[ext_resource type="Texture2D" uid="uid://c15qs80xggssd" path="res://assets/Sprites/idle_flame.png" id="4_djnb7"]
+[ext_resource type="AudioStream" uid="uid://cilpsios1sn6m" path="res://assets/Sounds/FVX/boost.wav" id="4_lx63h"]
+[ext_resource type="Texture2D" uid="uid://bgfaf47v65p1p" path="res://assets/Sprites/Player/Player.png" id="5_3x5nc"]
+
+[sub_resource type="GDScript" id="GDScript_d5y7o"]
+script/source = "extends CharacterBody2D
+
+@export var SPEED = 5.00
+const JUMP_VELOCITY = -400.0
+signal move_amo_lowers
+
+@export var max_move_amo = 500
+var move_amo = 0
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var direction = velocity
+var accalerating = false
+var accalerating_y = false
+var accalerating_x = false
+var playing_fvx = false
+func _ready():
+	move_amo = max_move_amo
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		#velocity.y += gravity * delta
+		pass
+	#print(accalerating)
+	#print(move_amo)
+	#print(velocity)
+	if accalerating_y or accalerating_x:
+		accalerating = true
+		move_amo -= 1
+		move_amo_lowers.emit()
+		if !playing_fvx:
+			$AudioStreamPlayer.play()
+			playing_fvx = true
+	else:
+		$AudioStreamPlayer.stop()
+		accalerating = false
+		playing_fvx = false
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	
+	#left and right
+	var direction_x = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction_x and move_amo > 0:
+		velocity.x += direction_x * SPEED
+		accalerating_x = true
+		if direction_x > 0:
+			$Flames/L.play(\"fiering\")
+		elif direction_x < 0:
+			$Flames/R.play(\"fiering\")
+	else:
+		$Flames/L.play(\"idle\")
+		$Flames/R.play(\"idle\")
+		velocity.x = move_toward(velocity.x, 0, 0)
+		accalerating_x = false
+		
+		#up and down
+		
+	var direction_y = Input.get_axis(\"ui_up\", \"ui_down\")
+	if direction_y and move_amo > 0:
+		velocity.y += direction_y * SPEED
+		accalerating_y = true
+		if direction_y > 0:
+			$Flames/U.play(\"fiering\")
+		elif direction_y < 0:
+			$Flames/D.play(\"fiering\")
+	else:
+		$Flames/U.play(\"idle\")
+		$Flames/D.play(\"idle\")
+		velocity.y = move_toward(velocity.y, 0, 0)
+		accalerating_y = false
+	move_and_slide()
+	#print(SPEED)
+
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group(\"red_blocks\"):
+		die()
+		
+func _process(delta):
+	var fps = Engine.get_frames_per_second()
+	#print(fps)
+
+func die():
+	get_tree().reload_current_scene.call_deferred()
+	
+func speed_up(value):
+	SPEED *= value
+	
+func reset_move_amo():
+	move_amo = max_move_amo
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k680e"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmd1r"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ome52"]
+atlas = ExtResource("1_yp2mk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1vhe"]
+atlas = ExtResource("1_yp2mk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvmll"]
+atlas = ExtResource("1_yp2mk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uxw6"]
+atlas = ExtResource("1_yp2mk")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i15l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ome52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1vhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvmll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uxw6")
+}],
+"loop": true,
+"name": &"fiering",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_djnb7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 100
+position = Vector2(459, 290)
+script = SubResource("GDScript_d5y7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k680e")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jmd1r")
+
+[node name="Flames" type="Node2D" parent="."]
+
+[node name="L" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(-12, 0.5)
+rotation = 1.56822
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"fiering"
+autoplay = "idle"
+frame_progress = 0.497044
+
+[node name="R" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(12, -0.5)
+rotation = -1.5561
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"fiering"
+autoplay = "idle"
+
+[node name="U" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(-0.5, -12)
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"fiering"
+autoplay = "idle"
+
+[node name="D" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(0.5, 12)
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"fiering"
+autoplay = "idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lx63h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_3x5nc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

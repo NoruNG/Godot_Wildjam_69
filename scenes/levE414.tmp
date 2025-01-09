@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://d26qctfp7nvxe"]
+
+[ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="1_8n3bv"]
+[ext_resource type="Script" path="res://scripts/lever.gd" id="1_rb32q"]
+[ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="2_cxond"]
+[ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="4_efxa8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtu28"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a3v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8n3bv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cxond")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qv3an"]
+texture = ExtResource("4_efxa8")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_xd3pn"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_qv3an")
+
+[node name="Lever" type="Node2D"]
+script = ExtResource("1_rb32q")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wtu28")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a3v7s")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="blue_blocks" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_xd3pn")
+format = 2
+layer_0/tile_data = PackedInt32Array(65533, 0, 0, -3, 0, 0, -65539, 0, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

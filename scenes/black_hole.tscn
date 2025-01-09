@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://boso0px7t6esi"]
+
+[ext_resource type="Script" path="res://scripts/black_hole.gd" id="1_nxxdu"]
+[ext_resource type="Texture2D" uid="uid://cwoqlc2antvji" path="res://assets/Sprites/Black_Hole/Void.png" id="2_qjiur"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ptavd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qjiur")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3die"]
+radius = 24.0208
+
+[node name="Black_Hole" type="Node2D"]
+script = ExtResource("1_nxxdu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.5, 1.5)
+scale = Vector2(0.038, 0.038)
+sprite_frames = SubResource("SpriteFrames_ptavd")
+animation = &"idle"
+frame_progress = 0.909581
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_b3die")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

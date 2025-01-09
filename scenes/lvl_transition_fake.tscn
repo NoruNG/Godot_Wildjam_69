@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://clp66wmj2akd6"]
+
+[ext_resource type="Script" path="res://scripts/lvl_transition_fake.gd" id="1_i6esn"]
+[ext_resource type="Texture2D" uid="uid://c410mta2wq64e" path="res://assets/Sprites/Portals/LVL_TRANSITION_USED.png" id="2_6hj7f"]
+[ext_resource type="Texture2D" uid="uid://0i55vmjsjfx6" path="res://assets/Sprites/Portals/LVL_Transition.png" id="2_b5ybm"]
+[ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="4_hpmm0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oevb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6hj7f")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b5ybm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u10t"]
+size = Vector2(125, 446)
+
+[node name="Lvl_Transition_fake" type="Node2D"]
+script = ExtResource("1_i6esn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oevb3")
+animation = &"explode"
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-52.5, 1)
+shape = SubResource("RectangleShape2D_7u10t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hpmm0")
+volume_db = 5.0
+pitch_scale = 2.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

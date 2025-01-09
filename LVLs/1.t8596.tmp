@@ -1,0 +1,127 @@
+[gd_scene load_steps=21 format=3 uid="uid://f3fftjeymud5"]
+
+[ext_resource type="PackedScene" uid="uid://cfkh1qabee33o" path="res://scenes/Player.tscn" id="1_875xj"]
+[ext_resource type="PackedScene" uid="uid://yechjsxf81tg" path="res://scenes/white_blocks.tscn" id="2_8ofmh"]
+[ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="2_18y84"]
+[ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_fc8pd"]
+[ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="5_kk36a"]
+[ext_resource type="AudioStream" uid="uid://2usq3cpwfqpy" path="res://assets/Sounds/Music/Lvl1+2.wav" id="6_1l0r5"]
+[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_vhaib"]
+[ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_u88o1"]
+[ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_lgc0i"]
+[ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_vitbs"]
+[ext_resource type="Texture2D" uid="uid://bf34d2bvginda" path="res://assets/Sprites/BG.png" id="11_5xb33"]
+[ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="13_r3hxb"]
+[ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="14_jdyt8"]
+[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="15_57emy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
+texture = ExtResource("2_18y84")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_1wffc"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_y3ycs")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rxc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gorhk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_u88o1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lgc0i")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
+texture = ExtResource("10_vitbs")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_m4k2t"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_luopu")
+
+[node name="LVL1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_875xj")]
+position = Vector2(-96, 0)
+max_move_amo = 1000
+
+[node name="white_blocks" parent="." instance=ExtResource("2_8ofmh")]
+
+[node name="red_blocks" type="TileMap" parent="." groups=["red_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_1wffc")
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Lvl_Transition" parent="." instance=ExtResource("4_fc8pd")]
+position = Vector2(128, -48)
+LVL = "2"
+
+[node name="Black_Hole" parent="." instance=ExtResource("5_kk36a")]
+position = Vector2(-141, -82)
+growth = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1l0r5")
+autoplay = true
+
+[node name="Toggles" type="Node2D" parent="."]
+script = ExtResource("7_vhaib")
+
+[node name="Lever" type="Area2D" parent="Toggles"]
+position = Vector2(-152, 103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggles/Lever"]
+shape = SubResource("RectangleShape2D_5rxc5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Toggles/Lever"]
+sprite_frames = SubResource("SpriteFrames_gorhk")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="blue_blocks" type="TileMap" parent="Toggles" groups=["blue_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_m4k2t")
+format = 2
+layer_0/tile_data = PackedInt32Array(458744, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(-0.999998, -2)
+scale = Vector2(10, 6.09375)
+texture = ExtResource("11_5xb33")
+metadata/_edit_lock_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_left = 101.0
+offset_top = 60.0
+offset_right = 133.0
+offset_bottom = 92.0
+texture_under = ExtResource("13_r3hxb")
+texture_progress = ExtResource("14_jdyt8")
+script = ExtResource("15_57emy")
+player = NodePath("../Player")
+
+[connection signal="body_entered" from="Toggles/Lever" to="Toggles" method="_on_lever_body_entered"]

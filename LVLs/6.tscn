@@ -1,0 +1,162 @@
+[gd_scene load_steps=22 format=3 uid="uid://du7nv1t5e88pu"]
+
+[ext_resource type="PackedScene" uid="uid://cfkh1qabee33o" path="res://scenes/Player.tscn" id="1_1tv61"]
+[ext_resource type="PackedScene" uid="uid://yechjsxf81tg" path="res://scenes/white_blocks.tscn" id="2_2kn3g"]
+[ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="3_kho1e"]
+[ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_gikx5"]
+[ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="5_0rbuk"]
+[ext_resource type="AudioStream" uid="uid://bfo4gx43nelbj" path="res://assets/Sounds/Music/Lvl5+6.wav" id="6_e4ibs"]
+[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_kc87k"]
+[ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_fi5g0"]
+[ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_hwdbq"]
+[ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_047wd"]
+[ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="12_gyylv"]
+[ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="13_jhdvx"]
+[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="14_a3nyd"]
+[ext_resource type="Texture2D" uid="uid://cygrixu78dmra" path="res://assets/BG2.png" id="15_ifkpd"]
+[ext_resource type="PackedScene" uid="uid://drw3m2xew040n" path="res://scenes/green_portal.tscn" id="15_reb3l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
+texture = ExtResource("3_kho1e")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_1wffc"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_y3ycs")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rxc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gorhk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_fi5g0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_hwdbq")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
+texture = ExtResource("10_047wd")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_m4k2t"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_luopu")
+
+[node name="LVL1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_1tv61")]
+position = Vector2(-1, 1)
+max_move_amo = 50
+
+[node name="white_blocks" parent="." instance=ExtResource("2_2kn3g")]
+layer_0/tile_data = PackedInt32Array(327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 131064, 1, 0, 65528, 1, 0, -8, 1, 0, -65544, 1, 0, -262149, 1, 0, -262148, 1, 0, -262147, 1, 0, -262146, 1, 0, -262145, 1, 0, -327680, 1, 0, -327679, 1, 0, -327678, 1, 0, -327677, 1, 0, -327676, 1, 0, -327675, 1, 0, -327674, 1, 0, -327673, 1, 0, -327672, 1, 0, 65544, 1, 0, 8, 1, 0, -65528, 1, 0)
+
+[node name="red_blocks" type="TileMap" parent="." groups=["red_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_1wffc")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 65536, 0, 0, 131071, 0, 0, -196608, 0, 0, -262144, 0, 0, -4, 0, 0, 65532, 0, 0, 131070, 0, 0, 131069, 0, 0, 131068, 0, 0, -131080, 0, 0, -196616, 0, 0, -262152, 0, 0, -262151, 0, 0, -262150, 0, 0, 196600, 0, 0, 262136, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 262152, 0, 0, 196616, 0, 0, 131080, 0, 0, 262150, 0, 0, 262151, 0, 0, -131064, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Lvl_Transition" parent="." instance=ExtResource("4_gikx5")]
+position = Vector2(128, -48)
+LVL = "7"
+
+[node name="Black_Hole" parent="." instance=ExtResource("5_0rbuk")]
+z_index = 5
+position = Vector2(-1, -52)
+growth = 0.35
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e4ibs")
+pitch_scale = 1.1
+autoplay = true
+
+[node name="Toggles" type="Node2D" parent="."]
+script = ExtResource("7_kc87k")
+
+[node name="Lever" type="Area2D" parent="Toggles"]
+position = Vector2(-152, 103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggles/Lever"]
+shape = SubResource("RectangleShape2D_5rxc5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Toggles/Lever"]
+sprite_frames = SubResource("SpriteFrames_gorhk")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="blue_blocks" type="TileMap" parent="Toggles" groups=["blue_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_m4k2t")
+format = 2
+layer_0/tile_data = PackedInt32Array(458744, 0, 0)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_left = 101.0
+offset_top = 60.0
+offset_right = 133.0
+offset_bottom = 92.0
+texture_under = ExtResource("12_gyylv")
+texture_progress = ExtResource("13_jhdvx")
+script = ExtResource("14_a3nyd")
+player = NodePath("../Player")
+
+[node name="Green_Portal" parent="." instance=ExtResource("15_reb3l")]
+position = Vector2(-113, 0)
+scale = Vector2(0.75, 0.75)
+
+[node name="Green_Portal3" parent="." instance=ExtResource("15_reb3l")]
+position = Vector2(115, 8)
+scale = Vector2(0.75, 0.75)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+offset_left = -63.0
+offset_top = 62.0
+offset_right = 185.0
+offset_bottom = 91.0
+scale = Vector2(0.78366, 0.800164)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/line_separation = 5
+theme_override_constants/table_h_separation = 5
+theme_override_constants/table_v_separation = 5
+theme_override_constants/text_highlight_h_padding = 5
+theme_override_constants/text_highlight_v_padding = 5
+text = "Watch your Energy Bar! -->"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(-0.999998, -2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("15_ifkpd")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Toggles/Lever" to="Toggles" method="_on_lever_body_entered"]

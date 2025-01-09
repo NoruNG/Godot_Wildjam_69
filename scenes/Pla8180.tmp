@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfkh1qabee33o"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_d4lfy"]
+[ext_resource type="Texture2D" uid="uid://dtg2ar15lev4r" path="res://icon.svg" id="1_pjnwh"]
+[ext_resource type="Texture2D" uid="uid://bo2hgnoyfpww8" path="res://assets/Sprites/Player/Flame.png" id="3_25cvj"]
+[ext_resource type="Texture2D" uid="uid://c15qs80xggssd" path="res://assets/Sprites/idle_flame.png" id="4_djnb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_limpp"]
+radius = 59.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q134m"]
+radius = 59.2115
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i15l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_25cvj")
+}],
+"loop": true,
+"name": &"fiering",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_djnb7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 100
+position = Vector2(459, 290)
+script = ExtResource("1_d4lfy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pjnwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_limpp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q134m")
+
+[node name="Flames" type="Node2D" parent="."]
+
+[node name="L" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(-85, -0.999996)
+rotation = 1.56822
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="R" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(77, -2)
+rotation = -1.5561
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="U" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(-0.999992, -75)
+rotation = 3.14159
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="D" type="AnimatedSprite2D" parent="Flames"]
+position = Vector2(2, 70)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_i15l5")
+animation = &"idle"
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

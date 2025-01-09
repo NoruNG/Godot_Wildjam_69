@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct5ce1jj4fani"]
+
+[ext_resource type="Script" path="res://scripts/black_hole_trigger.gd" id="1_uikq2"]
+[ext_resource type="Texture2D" uid="uid://cwoqlc2antvji" path="res://assets/Sprites/Black_Hole/Void.png" id="2_arj7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3die"]
+radius = 24.0208
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_trbig"]
+radius = 108.042
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_go7hm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_arj7h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Black_Hole" type="Node2D"]
+script = ExtResource("1_uikq2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_b3die")
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+shape = SubResource("CircleShape2D_trbig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.5, 1.5)
+scale = Vector2(0.038, 0.038)
+sprite_frames = SubResource("SpriteFrames_go7hm")
+animation = &"idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Trigger_Area" to="." method="_on_trigger_area_body_entered"]

@@ -1,0 +1,134 @@
+[gd_scene load_steps=21 format=3 uid="uid://cog5sc7q5mw6g"]
+
+[ext_resource type="PackedScene" uid="uid://cfkh1qabee33o" path="res://scenes/Player.tscn" id="1_y8on6"]
+[ext_resource type="PackedScene" uid="uid://yechjsxf81tg" path="res://scenes/white_blocks.tscn" id="2_1q380"]
+[ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="3_mxako"]
+[ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_s0ddq"]
+[ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="5_gly4s"]
+[ext_resource type="AudioStream" uid="uid://bqcqdmilqs1ip" path="res://assets/Sounds/Music/Lvl3+4.wav" id="6_6ecip"]
+[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_fhssr"]
+[ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_bdfli"]
+[ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_tcmm6"]
+[ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_2eh58"]
+[ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="12_vbga0"]
+[ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="13_25b4r"]
+[ext_resource type="Texture2D" uid="uid://cygrixu78dmra" path="res://assets/BG2.png" id="14_k2px6"]
+[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="14_s3lit"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
+texture = ExtResource("3_mxako")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_1wffc"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_y3ycs")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rxc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gorhk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_bdfli")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_tcmm6")
+}],
+"loop": true,
+"name": &"used",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
+texture = ExtResource("10_2eh58")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_m4k2t"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_luopu")
+
+[node name="LVL4" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_y8on6")]
+position = Vector2(104, 0)
+
+[node name="white_blocks" parent="." instance=ExtResource("2_1q380")]
+layer_0/tile_data = PackedInt32Array(65540, 1, 0, 65539, 1, 0, 3, 1, 0, -65533, 1, 0, -131069, 1, 0, -131068, 1, 0, -6, 1, 0, 65530, 1, 0)
+
+[node name="red_blocks" type="TileMap" parent="." groups=["red_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_1wffc")
+format = 2
+layer_0/tile_data = PackedInt32Array(327672, 0, 0, 327673, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 196616, 0, 0, 131080, 0, 0, 65544, 0, 0, 8, 0, 0, -65528, 0, 0, -327676, 0, 0, -327677, 0, 0, -327678, 0, 0, -327679, 0, 0, -327680, 0, 0, -262145, 0, 0, -262146, 0, 0, -262147, 0, 0, -262148, 0, 0, -262149, 0, 0, -262150, 0, 0, -262151, 0, 0, -262152, 0, 0, -196616, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, 65528, 0, 0, 131064, 0, 0, 262136, 0, 0, 196600, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -131064, 0, 0, -196600, 0, 0, -262136, 0, 0, -327672, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 262142, 0, 0, 196606, 0, 0, -131074, 0, 0, -196610, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Lvl_Transition" parent="." instance=ExtResource("4_s0ddq")]
+position = Vector2(-88, 72)
+rotation = 1.5708
+LVL = "5"
+
+[node name="Black_Hole" parent="." instance=ExtResource("5_gly4s")]
+position = Vector2(147, 84)
+growth = 0.5
+
+[node name="Black_Hole2" parent="." instance=ExtResource("5_gly4s")]
+position = Vector2(148, -88)
+growth = 0.7
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6ecip")
+pitch_scale = 1.1
+autoplay = true
+
+[node name="Toggles" type="Node2D" parent="."]
+script = ExtResource("7_fhssr")
+
+[node name="Lever" type="Area2D" parent="Toggles"]
+position = Vector2(-152, 103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggles/Lever"]
+shape = SubResource("RectangleShape2D_5rxc5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Toggles/Lever"]
+sprite_frames = SubResource("SpriteFrames_gorhk")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="blue_blocks" type="TileMap" parent="Toggles" groups=["blue_blocks"]]
+position = Vector2(-8, 0)
+tile_set = SubResource("TileSet_m4k2t")
+format = 2
+layer_0/tile_data = PackedInt32Array(458744, 0, 0)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_left = 101.0
+offset_top = 60.0
+offset_right = 133.0
+offset_bottom = 92.0
+texture_under = ExtResource("12_vbga0")
+texture_progress = ExtResource("13_25b4r")
+script = ExtResource("14_s3lit")
+player = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(-0.999998, -2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("14_k2px6")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Toggles/Lever" to="Toggles" method="_on_lever_body_entered"]
