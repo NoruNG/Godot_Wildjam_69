@@ -12,15 +12,15 @@ config_version=5
 
 config/name="Godot_Wild_Jam_69"
 run/main_scene="res://LVLs/Start.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1088
 window/size/viewport_height=640
-window/size/initial_position_type=0
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 

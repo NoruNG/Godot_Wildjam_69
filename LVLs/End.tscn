@@ -4,23 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://yechjsxf81tg" path="res://scenes/white_blocks.tscn" id="2_3rsw7"]
 [ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="3_si17l"]
 [ext_resource type="AudioStream" uid="uid://battetbtxtwjv" path="res://assets/Sounds/Music/LobbyorStartMenue.wav" id="4_vlcto"]
-[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_16nwi"]
+[ext_resource type="Script" uid="uid://qewlfh8pvuoc" path="res://scripts/Toggles.gd" id="7_16nwi"]
 [ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_4t68e"]
 [ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_40ykn"]
 [ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_asvuk"]
 [ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="12_7tdvt"]
 [ext_resource type="Texture2D" uid="uid://cvkqbj1ywhpky" path="res://assets/BG3.png" id="13_if50u"]
-[ext_resource type="Script" path="res://scripts/Control.gd" id="13_p74qs"]
+[ext_resource type="Script" uid="uid://dpi0id8wd3io4" path="res://scripts/Control.gd" id="13_p74qs"]
 [ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="13_um4ol"]
-[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="14_io0pi"]
+[ext_resource type="Script" uid="uid://liik3oguj4sg" path="res://scripts/TextureProgressBar.gd" id="14_io0pi"]
 [ext_resource type="Texture2D" uid="uid://253rl5uxto1d" path="res://assets/play.png" id="14_lmutv"]
 [ext_resource type="Texture2D" uid="uid://dgly6m2u8mev5" path="res://assets/quit.png" id="15_7qn48"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
 texture = ExtResource("3_si17l")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1wffc"]
@@ -52,8 +50,6 @@ animations = [{
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
 texture = ExtResource("10_asvuk")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_m4k2t"]

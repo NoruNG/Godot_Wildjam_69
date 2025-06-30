@@ -6,20 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_fc8pd"]
 [ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="5_kk36a"]
 [ext_resource type="AudioStream" uid="uid://2usq3cpwfqpy" path="res://assets/Sounds/Music/Lvl1+2.wav" id="6_1l0r5"]
-[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_vhaib"]
+[ext_resource type="Script" uid="uid://qewlfh8pvuoc" path="res://scripts/Toggles.gd" id="7_vhaib"]
 [ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_u88o1"]
 [ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_lgc0i"]
 [ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_vitbs"]
 [ext_resource type="Texture2D" uid="uid://dx8b2qhre4vwa" path="res://assets/BG1.png" id="11_e828n"]
 [ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="13_r3hxb"]
 [ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="14_jdyt8"]
-[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="15_57emy"]
+[ext_resource type="Script" uid="uid://liik3oguj4sg" path="res://scripts/TextureProgressBar.gd" id="15_57emy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
 texture = ExtResource("2_18y84")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1wffc"]
@@ -51,8 +49,6 @@ animations = [{
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
 texture = ExtResource("10_vitbs")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_m4k2t"]
@@ -66,7 +62,6 @@ position = Vector2(-96, 0)
 max_move_amo = 1000
 
 [node name="white_blocks" parent="." instance=ExtResource("2_8ofmh")]
-layer_0/tile_data = PackedInt32Array(327672, 1, 0, 327673, 1, 0, 327674, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262136, 1, 0, 196600, 1, 0, 131064, 1, 0, -65544, 1, 0, -131080, 1, 0, -196616, 1, 0, -262152, 1, 0, -262151, 1, 0, -262150, 1, 0, -262149, 1, 0, -262148, 1, 0, -262147, 1, 0, -262146, 1, 0, -262145, 1, 0, -327680, 1, 0, -327679, 1, 0, -327678, 1, 0, -327677, 1, 0, -327676, 1, 0, -327675, 1, 0, -327674, 1, 0, -327673, 1, 0, -327672, 1, 0, 196616, 1, 0, 131080, 1, 0, 65544, 1, 0, 8, 1, 0, -65528, 1, 0, -131064, 1, 0, -196612, 1, 0, -131076, 1, 0, -65540, 1, 0, -4, 1, 0, 65532, 1, 0, 131068, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 0, 1, 0, -262144, 1, 0, -65531, 1, 0, -131067, 1, 0, -196603, 1, 0, -262139, 1, 0, 131077, 1, 0, 196613, 1, 0, -65536, 1, 0, 65528, 1, 0, -8, 1, 0)
 
 [node name="red_blocks" type="TileMap" parent="." groups=["red_blocks"]]
 position = Vector2(-8, 0)

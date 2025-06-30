@@ -1,18 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqya0nllgqe7e"]
+[gd_scene load_steps=22 format=3 uid="uid://dqya0nllgqe7e"]
 
 [ext_resource type="PackedScene" uid="uid://cfkh1qabee33o" path="res://scenes/Player.tscn" id="1_go3dy"]
-[ext_resource type="PackedScene" uid="uid://yechjsxf81tg" path="res://scenes/white_blocks.tscn" id="2_e0u08"]
 [ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="3_yn0vr"]
 [ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_m3rfc"]
 [ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="5_lf8ol"]
 [ext_resource type="AudioStream" uid="uid://dntq235mf32pg" path="res://assets/Sounds/Music/Lvl9+10.wav" id="6_cgeyb"]
-[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_yokfw"]
+[ext_resource type="Script" uid="uid://qewlfh8pvuoc" path="res://scripts/Toggles.gd" id="7_yokfw"]
 [ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_aatjh"]
 [ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_1fqno"]
 [ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_vlf1u"]
 [ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="12_ogla3"]
 [ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="13_i7ub4"]
-[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="14_ev7ht"]
+[ext_resource type="Script" uid="uid://liik3oguj4sg" path="res://scripts/TextureProgressBar.gd" id="14_ev7ht"]
 [ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="14_sphgt"]
 [ext_resource type="PackedScene" uid="uid://cealenn4ct53t" path="res://scenes/yellow_portal.tscn" id="15_c2nri"]
 [ext_resource type="Texture2D" uid="uid://cvkqbj1ywhpky" path="res://assets/BG3.png" id="16_wn0pa"]
@@ -20,8 +19,6 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
 texture = ExtResource("3_yn0vr")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1wffc"]
@@ -53,8 +50,6 @@ animations = [{
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
 texture = ExtResource("10_vlf1u")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_m4k2t"]
@@ -77,9 +72,6 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("1_go3dy")]
 position = Vector2(-106, -52)
 max_move_amo = 1000
-
-[node name="white_blocks" parent="." instance=ExtResource("2_e0u08")]
-layer_0/tile_data = PackedInt32Array()
 
 [node name="red_blocks" type="TileMap" parent="." groups=["red_blocks"]]
 position = Vector2(-8, 0)

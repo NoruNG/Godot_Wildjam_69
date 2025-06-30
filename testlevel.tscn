@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cealenn4ct53t" path="res://scenes/yellow_portal.tscn" id="7_t4i0e"]
 [ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="8_6bit8"]
 [ext_resource type="PackedScene" uid="uid://boso0px7t6esi" path="res://scenes/black_hole.tscn" id="8_pya4k"]
-[ext_resource type="PackedScene" uid="uid://d26qctfp7nvxe" path="res://scenes/lever.tscn" id="9_4ypkl"]
 [ext_resource type="AudioStream" uid="uid://den12aw10gcnv" path="res://assets/Sounds/Music/Root.wav" id="9_gap5d"]
 
 [sub_resource type="TileSet" id="TileSet_stscb"]
@@ -14,6 +13,9 @@ physics_layer_0/collision_layer = 1
 
 [sub_resource type="TileSet" id="TileSet_vn067"]
 physics_layer_0/collision_layer = 1
+
+[sub_resource type="Resource" id="Resource_vfacy"]
+metadata/__load_path__ = "res://scenes/lever.tscn"
 
 [node name="Testlevel" type="Node2D"]
 
@@ -56,7 +58,7 @@ scale = Vector2(5, 5)
 position = Vector2(340, -231)
 scale = Vector2(5, 5)
 
-[node name="Lever" parent="." instance=ExtResource("9_4ypkl")]
+[node name="Lever" parent="."]
 position = Vector2(-283, 286)
 scale = Vector2(5, 5)
 

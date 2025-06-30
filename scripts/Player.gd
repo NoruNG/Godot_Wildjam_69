@@ -89,4 +89,3 @@ func speed_up():
 	
 func reset_move_amo():
 	move_amo = max_move_amo
-

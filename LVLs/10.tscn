@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bba80kbhr0hmo" path="res://assets/Sprites/blocks/red_block/red_block.png" id="3_jaho5"]
 [ext_resource type="PackedScene" uid="uid://dwhl5pit833ht" path="res://scenes/lvl_transition.tscn" id="4_1vdes"]
 [ext_resource type="AudioStream" uid="uid://dntq235mf32pg" path="res://assets/Sounds/Music/Lvl9+10.wav" id="6_cp1gs"]
-[ext_resource type="Script" path="res://scripts/Toggles.gd" id="7_lp8c3"]
+[ext_resource type="Script" uid="uid://qewlfh8pvuoc" path="res://scripts/Toggles.gd" id="7_lp8c3"]
 [ext_resource type="Texture2D" uid="uid://bk45b5pdjdxgp" path="res://assets/Sprites/blocks/blue_block/Lever_idle.png" id="8_hyxwj"]
 [ext_resource type="Texture2D" uid="uid://coo8w7kl63l31" path="res://assets/Sprites/blocks/blue_block/Lever_used.png" id="9_7ohem"]
 [ext_resource type="Texture2D" uid="uid://djklnyn4s8m0r" path="res://assets/Sprites/blocks/blue_block/Blue_Block.png" id="10_7kepi"]
 [ext_resource type="Texture2D" uid="uid://daktambgf7e32" path="res://assets/Sprites/Progress_back.png" id="12_5pwxe"]
 [ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="12_mhywo"]
 [ext_resource type="Texture2D" uid="uid://d3k6hv42ir2hk" path="res://assets/Sprites/progress_front.png" id="13_131jc"]
-[ext_resource type="Script" path="res://scripts/TextureProgressBar.gd" id="14_uivgw"]
+[ext_resource type="Script" uid="uid://liik3oguj4sg" path="res://scripts/TextureProgressBar.gd" id="14_uivgw"]
 [ext_resource type="PackedScene" uid="uid://clp66wmj2akd6" path="res://scenes/lvl_transition_fake.tscn" id="15_7ja1x"]
 [ext_resource type="PackedScene" uid="uid://drw3m2xew040n" path="res://scenes/green_portal.tscn" id="15_ceuv1"]
 [ext_resource type="PackedScene" uid="uid://cealenn4ct53t" path="res://scenes/yellow_portal.tscn" id="16_aamwl"]
@@ -22,8 +22,6 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3ycs"]
 texture = ExtResource("3_jaho5")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1wffc"]
@@ -55,8 +53,6 @@ animations = [{
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luopu"]
 texture = ExtResource("10_7kepi")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_m4k2t"]

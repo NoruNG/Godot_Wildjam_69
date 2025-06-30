@@ -96,7 +96,6 @@ func speed_up(value):
 	
 func reset_move_amo():
 	move_amo = max_move_amo
-
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k680e"]

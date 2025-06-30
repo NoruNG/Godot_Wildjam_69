@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://clp66wmj2akd6"]
 
-[ext_resource type="Script" path="res://scripts/lvl_transition_fake.gd" id="1_i6esn"]
+[ext_resource type="Script" uid="uid://dh7w362ikbdx4" path="res://scripts/lvl_transition_fake.gd" id="1_i6esn"]
 [ext_resource type="Texture2D" uid="uid://c410mta2wq64e" path="res://assets/Sprites/Portals/LVL_TRANSITION_USED.png" id="2_6hj7f"]
 [ext_resource type="Texture2D" uid="uid://0i55vmjsjfx6" path="res://assets/Sprites/Portals/LVL_Transition.png" id="2_b5ybm"]
 [ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="4_hpmm0"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwhl5pit833ht"]
 
-[ext_resource type="Script" path="res://scripts/lvl_transition.gd" id="1_m8dwn"]
+[ext_resource type="Script" uid="uid://dfvhhn53ohi6" path="res://scripts/lvl_transition.gd" id="1_m8dwn"]
 [ext_resource type="Texture2D" uid="uid://0i55vmjsjfx6" path="res://assets/Sprites/Portals/LVL_Transition.png" id="1_xsjoq"]
 [ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="3_sy507"]
 

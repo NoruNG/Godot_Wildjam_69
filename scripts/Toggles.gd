@@ -22,4 +22,3 @@ func _on_lever_body_entered(body):
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
 		
-

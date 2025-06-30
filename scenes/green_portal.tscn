@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://drw3m2xew040n"]
 
 [ext_resource type="Texture2D" uid="uid://dgwf6an0y7l05" path="res://assets/Sprites/Portals/Green_Portal.png" id="1_ub0ud"]
-[ext_resource type="Script" path="res://scripts/green_portal.gd" id="1_xup1b"]
+[ext_resource type="Script" uid="uid://dfrcqjpbb47dm" path="res://scripts/green_portal.gd" id="1_xup1b"]
 [ext_resource type="Texture2D" uid="uid://cyw6xv2ilouu" path="res://assets/Sprites/Portals/Gray_Portal.png" id="2_wp2ja"]
 [ext_resource type="AudioStream" uid="uid://cqv3ymvnak4o7" path="res://assets/Sounds/FVX/bell.wav" id="4_e4gn6"]
 
